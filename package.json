@@ -4,6 +4,7 @@
   "description": "Backend del proyecto Sena me Cuida",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "nodemon node src/index.js"
   },
   "author": "Emerson Machado y Juan Jose Tapias",
