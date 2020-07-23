@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {  /*userRegister,*/  userLogin } = require("../utils/AuthSeguridad");
+const {  /*userRegister,*/  userLogin } = require('../Utils/AuthSeguridad');
 
 
 
