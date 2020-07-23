@@ -1,5 +1,5 @@
 require('../Configs/config')
-const Administrador = require('../models/tbl_administrador')
+const Administrador = require('../Models/tbl_administrador')
 const passportJWT = require('passport-jwt')
 
 
