@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authJWT = require('../Middlewares/PassportSeguridad')
 const passport = require("passport");
 passport.use(authJWT)
-const User = require("../models/tbl_seguridad");
+const User = require('../Models/tbl_seguridad');
 
 
 // //.......Describe the user registration.......[ ADMIN ]....................................
