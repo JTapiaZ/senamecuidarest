@@ -1,5 +1,5 @@
 require('../Configs/config')
-const Seguridad = require('../models/tbl_seguridad')
+const Seguridad = require('../Models/tbl_seguridad')
 const passportJWT = require('passport-jwt')
 
 
