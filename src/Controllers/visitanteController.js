@@ -29,12 +29,12 @@ visitante
       return res.send("Ok")
   })
     .catch(err => {
-        res.status(500).send({
-            success: false,
-            message: 
-                err.message || "Ocurrio un error al crear el registro",
-        });
+        if (err.name === 'MongoError' && err.code === 11000 ) {
+        // Duplicate username
         console.log(err);
+        return res.status(409).send(err.keyValue);
+        }
+        
     })
 }
 

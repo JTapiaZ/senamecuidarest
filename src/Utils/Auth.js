@@ -56,12 +56,14 @@ const User = require("../Models/tbl_administrador");
 const userLogin = async (userCreds, role, res) => {
   let { username, password } = userCreds;
 
+  if (!username || !password ){
+    return res.status(400).send("¡Por favor ingrese un usuario y una contraseña valida!");
+}
+
   //First check if the username is in the database
   const user = await User.findOne({ username });
   if (!user) {
-    return res.status(404).json({
-      message: `Usuario no encontrado, credenciales invalidas para iniciar sesión`
-    });
+    return res.status(400).send("¡Usuario no encontrado, credenciales invalidas para iniciar sesion!");
   }
   // We will check the role
   if (user.role != role) {
