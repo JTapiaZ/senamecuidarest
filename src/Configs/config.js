@@ -13,6 +13,7 @@ process.env.SEED = process.env.SEED || 'eventoSena';
 //process.env.URLDB='mongodb+srv://gortiza:k1ngk0ng@cluster0-uzpnb.mongodb.net/misena?retryWrites=true&w=majority'
 
 process.env.URLDB='mongodb+srv://jtapiaz:tapias0414@cluster0-hxgql.mongodb.net/test?retryWrites=true&w=majority'
+//process.env.URLDB='mongodb://localhost/BaseDatos'
 
 process.env.SECRET="fabrica2020"
 

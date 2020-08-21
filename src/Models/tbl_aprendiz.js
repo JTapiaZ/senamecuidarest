@@ -1,9 +1,13 @@
 'use strict'
 
-const { Schema, model } = require("mongoose");
+const {Schema, model} = require("mongoose");
 require('mongoose-type-email');
+const moment = require('moment-timezone')
 
-const aprendizSchema  = new Schema(
+
+
+
+const aprendizSchema = new Schema(
     {
         nombre: {
             type: String,
@@ -18,7 +22,7 @@ const aprendizSchema  = new Schema(
         },
         documentoIdentidad: {
             type: String,
-            required:true,
+            required: true,
             max: 20,
             unique: true
         },
@@ -52,8 +56,53 @@ const aprendizSchema  = new Schema(
             required: true,
             max: 50
         },
+        sintomas: {
+
+            fiebre: {
+                type: Boolean,
+                required: true,
+            },
+            Tos: {
+                type: Boolean,
+                required: true,
+            },
+            DolorTragar: {
+                type: Boolean,
+                required: true,
+            },
+            MalestarGeneral: {
+                type: Boolean,
+                required: true,
+            },
+            DificultadRespirar: {
+                type: Boolean,
+                required: true,
+            },
+            Gripa: {
+                type: Boolean,
+                required: true,
+            },
+            Diarrea: {
+                type: Boolean,
+                required: true,
+            },
+            ContactoSospechoso: {
+                type: Boolean,
+                required: true,
+            },
+            DolorArticular: {
+                type: Boolean,
+                required: true,
+            },
+        },
+
+        horaActualizacion: {
+            type: String,
+            default: Date,
+
+        },
     },
-    { timestamps: true }
+    {timestamps: true}
 )
 
 module.exports = model("Aprendiz", aprendizSchema);

@@ -3,7 +3,7 @@ require('mongoose-type-email');
 const {Schema, model} = require("mongoose");
 require('mongoose-type-email');
 
-const funcionarioSchema = new Schema(
+const reporteSaludSchema = new Schema(
     {
         nombre: {
             type: String,
@@ -38,16 +38,6 @@ const funcionarioSchema = new Schema(
             max: 50
         },
         eps: {
-            type: String,
-            required: true,
-            max: 30
-        },
-        torre: {
-            type: String,
-            required: true,
-            max: 30
-        },
-        piso: {
             type: String,
             required: true,
             max: 30
@@ -95,5 +85,5 @@ const funcionarioSchema = new Schema(
     {timestamps: true}
 )
 
-module.exports = model("Funcionario", funcionarioSchema);
+module.exports = model("ReporteSalud", reporteSaludSchema);
 

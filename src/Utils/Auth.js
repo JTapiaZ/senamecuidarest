@@ -85,7 +85,7 @@ const userLogin = async (userCreds, role, res) => {
         email: user.email
       },
       process.env.SECRET,
-      { expiresIn: "7 days" }
+      { expiresIn: "1 days" }
     );
 
     let result = {
@@ -112,14 +112,23 @@ const userAuth = passport.authenticate("jwt", { session: false });
 
 //.......Check role middleware...............................................................................
 
-const checkRole = roles => (req, res, next) => {
-  if (roles.includes(req.user.role)) {
-    next();
+const checkRole = (req, res, next) => {
+  try {
+    const {token} = req.headers;
+    dataToken= jwt.verify(token, process.env.SECRET);
+    const {role}= dataToken;
+    
+  if (role !== 'admin') {
+    return res.status(401).json({
+      message: "¡Acceso no autorizado!",
+      success: false
+    });
   }
-  return res.status(401).json({
-    message: "¡Acceso no autorizado!",
-    success: false
-  });
+  next(); 
+  } catch (error) {
+    // console.log(error);
+    res.status(401).send('Token no valido')
+  }
 };
 
 //....................................... Email validate.................................................

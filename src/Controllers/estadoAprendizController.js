@@ -22,7 +22,7 @@ let ingresoDia = new IngresoDia(
 estado
     .save()
     .then(data => {
-        res.send("¡Su registro se ha guardado exitosamente!");
+        // res.send("¡Su registro se ha guardado exitosamente!");
         ingresoDia.save()
           .then(data => {
             res.send({data})

@@ -1,9 +1,10 @@
-const Aprendiz = require('../Models/tbl_aprendiz');
+const ReporteSaludDia = require('../Models/tbl_reporteSaludDia');
+const ReporteSalud = require('../Models/tbl_reporteSalud');
 const {emailSend} = require('./mailController');
 const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 
-exports.aprendiz_create = function (req, res) {
+exports.reporteSaludDia_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
     if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
@@ -26,7 +27,24 @@ exports.aprendiz_create = function (req, res) {
     }
 
 // Create a public
-    let aprendiz = new Aprendiz(
+    let reporteSaludDia = new ReporteSaludDia(
+        (
+            {
+                nombre: body.nombre,
+                email: body.email,
+                documentoIdentidad: body.documentoIdentidad,
+                celular: body.celular,
+                telefono: body.telefono,
+                direccionResidencia: body.direccionResidencia,
+                eps: body.eps,
+                ficha: body.ficha,
+                programaDeFormacion: body.programaDeFormacion,
+                sintomas
+
+            }
+        )
+    );
+    let reporteSalud = new ReporteSalud(
         (
             {
                 nombre: body.nombre,
@@ -47,10 +65,21 @@ exports.aprendiz_create = function (req, res) {
 
 // ------------- save public in the database -----------
 
-    aprendiz
+    reporteSaludDia
         .save()
         .then(data => {
-            res.send("¡Su registro se ha guardado exitosamente!");
+            // res.send("¡Su registro se ha guardado exitosamente!");
+            reporteSalud.save()
+            .then(data => {
+                res.send({data})
+            })
+            .catch(err => {
+                res.status(500).send({
+                message: 
+                    err.message || "Ocurrio un error al crear el registro",
+                });
+            console.log(err);
+            })
         })
         .then(dat => {
             emailSend(body)
@@ -69,7 +98,7 @@ exports.aprendiz_create = function (req, res) {
         })
 }
 
-exports.aprendiz_createNE = function (req, res) {
+exports.reporteSaludDia_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
     if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
@@ -92,7 +121,7 @@ exports.aprendiz_createNE = function (req, res) {
     }
 
 // Create a public
-    let aprendiz = new Aprendiz(
+    let reporteSaludDia = new ReporteSaludDia(
         (
             {
                 nombre: body.nombre,
@@ -113,7 +142,7 @@ exports.aprendiz_createNE = function (req, res) {
 
 // ------------- save public in the database -----------
 
-    aprendiz
+    reporteSaludDia
         .save()
         .then(data => {
             res.send("¡Su registro se ha guardado exitosamente!");
@@ -137,8 +166,8 @@ exports.aprendiz_createNE = function (req, res) {
 }
 
 // ------------- retrieve and return all public ------------------
-exports.all_aprendices = (req, res) => {
-    Aprendiz.find()
+exports.all_reporteSaludDia = (req, res) => {
+    ReporteSaludDia.find()
         .then(data => {
             var message = "";
             if (data === undefined || data.length == 0) message = "Personas no encontradas!";
@@ -158,8 +187,8 @@ exports.all_aprendices = (req, res) => {
 
 
 // --------- find a public by id -------------
-exports.aprendiz_details = (req, res) => {
-    Aprendiz.findById(req.params.id)
+exports.reporteSaludDia_details = (req, res) => {
+    ReporteSaludDia.findById(req.params.id)
         .then(data => {
             if (!data) {
                 return res.status(404).send({
@@ -184,14 +213,14 @@ exports.aprendiz_details = (req, res) => {
 };
 
 // --------- Find public and update ----------
-exports.aprendiz_update = (req, res) => {
+exports.reporteSaludDia_update = (req, res) => {
     // validate request
     if (!req.body.documentoIdentidad || !req.body.email) {
         return res.status(400).send({
             message: "Please enter employee phone and email"
         });
     }
-    Aprendiz.findOneAndUpdate(
+    ReporteSaludDia.findOneAndUpdate(
         req.params.id,
         {
             $set: req.body
@@ -221,8 +250,8 @@ exports.aprendiz_update = (req, res) => {
 }
 
 // delete a public with the specified id.
-exports.aprendiz_delete = (req, res) => {
-    Aprendiz.findOneAndDelete(req.params.id)
+exports.reporteSaludDia_delete = (req, res) => {
+    ReporteSaludDia.findOneAndDelete(req.params.id)
         .then(data => {
             if (!data) {
                 return res.status(404).send({
@@ -246,71 +275,69 @@ exports.aprendiz_delete = (req, res) => {
 };
 
 
-// --------- find a funcionario by documento Identidad -------------
-exports.aprendiz_ing = async (req, res) => {
-    const {documentoIdentidad} = req.body;
-    await Aprendiz.findOne({documentoIdentidad}).select({
-        _id: 0,
-        horaEntrada: 0,
-        createdAt: 0,
-        updatedAt: 0,
-        ficha: 0,
-        programaDeFormacion: 0
-    })
-        .then(data => {
-            if (!data) {
-                return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
-            }
-            res.send(data)
-        })
-        .catch(err => {
-            return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
-        });
-};
+// // --------- find a funcionario by documento Identidad -------------
+// exports.aprendiz_ing = async (req, res) => {
+//     const {documentoIdentidad} = req.body;
+//     await Aprendiz.findOne({documentoIdentidad}).select({
+//         _id: 0,
+//         horaEntrada: 0,
+//         createdAt: 0,
+//         updatedAt: 0,
+//         ficha: 0,
+//         programaDeFormacion: 0
+//     })
+//         .then(data => {
+//             if (!data) {
+//                 return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
+//             }
+//             res.send(data)
+//         })
+//         .catch(err => {
+//             return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+//         });
+// };
 
 
-// --------- find a funcionario by documento Identidad -------------
-exports.aprendiz_sal = async (req, res) => {
-    const {documentoIdentidad} = req.body;
-    await Aprendiz.findOne({documentoIdentidad}).select({_id: 0, horaEntrada: 0})
-        .then(data => {
-            if (!data) {
-                return res.status(404).send(`Persona no se encuentra de alta ${documentoIdentidad}`);
-            }
-            res.send(data)
-        })
-        .catch(err => {
-            return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
-        });
-};
+// // --------- find a funcionario by documento Identidad -------------
+// exports.aprendiz_sal = async (req, res) => {
+//     const {documentoIdentidad} = req.body;
+//     await Aprendiz.findOne({documentoIdentidad}).select({_id: 0, horaEntrada: 0})
+//         .then(data => {
+//             if (!data) {
+//                 return res.status(404).send(`Persona no se encuentra de alta ${documentoIdentidad}`);
+//             }
+//             res.send(data)
+//         })
+//         .catch(err => {
+//             return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+//         });
+// };
 
 
-// ------ Count registros ---------
-exports.countDocuments = (req, res) => {
-    Aprendiz.estimatedDocumentCount({}, function (err, result) {
-        if (err) {
-            console.log(err)
-        } else {
-            res.send({result})
-        }
-    })
-}
+// // ------ Count registros ---------
+// exports.countDocuments = (req, res) => {
+//     Aprendiz.estimatedDocumentCount({}, function (err, result) {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             res.send({result})
+//         }
+//     })
+// }
 
-exports.ingresoMeses = (req, res) => {
-    Aprendiz.aggregate([
-        {
-            "$group": {
-                "_id": {"$month": {"$toDate": "$createdAt"}},
-                "total": {"$sum": 1}
-            }
-        }
-    ], function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send({result});
-        }
-    })
-}
-
-
+// exports.ingresoMeses = (req, res) => {
+//     Aprendiz.aggregate([
+//         {
+//             "$group": {
+//                 "_id": {"$month": {"$toDate": "$createdAt"}},
+//                 "total": {"$sum": 1}
+//             }
+//         }
+//     ], function (err, result) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.send({result});
+//         }
+//     })
+// }

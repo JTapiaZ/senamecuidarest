@@ -1,9 +1,9 @@
 'use strict'
 require('mongoose-type-email');
-const { Schema, model } = require("mongoose");
+const {Schema, model} = require("mongoose");
 require('mongoose-type-email');
 
-const publicoSchema  = new Schema(
+const publicoSchema = new Schema(
     {
         nombre: {
             type: String,
@@ -18,7 +18,7 @@ const publicoSchema  = new Schema(
         },
         documentoIdentidad: {
             type: String,
-            required:true,
+            required: true,
             max: 20,
             unique: true
         },
@@ -42,8 +42,57 @@ const publicoSchema  = new Schema(
             required: true,
             max: 30
         },
+        torre: {
+            type: String,
+            required: true,
+            max: 30
+        },
+        piso: {
+            type: String,
+            required: true,
+            max: 30
+        },
+        sintomas: {
+
+            fiebre: {
+                type: Boolean,
+                required: true,
+            },
+            Tos: {
+                type: Boolean,
+                required: true,
+            },
+            DolorTragar: {
+                type: Boolean,
+                required: true,
+            },
+            MalestarGeneral: {
+                type: Boolean,
+                required: true,
+            },
+            DificultadRespirar: {
+                type: Boolean,
+                required: true,
+            },
+            Gripa: {
+                type: Boolean,
+                required: true,
+            },
+            Diarrea: {
+                type: Boolean,
+                required: true,
+            },
+            ContactoSospechoso: {
+                type: Boolean,
+                required: true,
+            },
+            DolorArticular: {
+                type: Boolean,
+                required: true,
+            },
+        }
     },
-    { timestamps:true }
+    {timestamps: true}
 )
 
 module.exports = model("Visitante", publicoSchema);

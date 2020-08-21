@@ -5,11 +5,13 @@ console.clear();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
+var cors = require('cors')
 
-
+mongoose.set('useCreateIndex',true);
 // Database Connection
-mongoose.connect(process.env.URLDB,{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: true})
-    .then(()=>{
+mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
+    .then(() => {
         console.log('¡Connection Successfully!')
     });
 
@@ -21,15 +23,16 @@ const app = express();
 // Middlewares
 app.use('/static', express.static(__dirname + '/reportes'));
 app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan('dev'))
 
 // Cors
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+app.use(cors())
 
 
 //Routes
@@ -45,9 +48,12 @@ app.use("/api/estadoAprendiz", require('./Routes/estadoAprendizRoutes'))
 app.use("/api/estadoFuncionario", require('./Routes/estadoFuncionarioRoutes'))
 app.use("/api/estadoVisitante", require('./Routes/estadoVisitanteRoutes'))
 app.use("/api/noIngresoDia", require('./Routes/noIngresoDiaRoutes'))
+app.use("/api/saludEstado", require('./Routes/EstadoSaludRoutes'))
+app.use("/api/reporteSaludDia", require('./Routes/reporteSaludDiaRoutes'))
+app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
 
 
 // Run the server
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT, () => {
     console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
 });
