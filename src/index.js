@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan')
 var cors = require('cors')
 
-mongoose.set('useCreateIndex',true);
+// mongoose.set('useCreateIndex',true);
 // Database Connection
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
     .then(() => {
