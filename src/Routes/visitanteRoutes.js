@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const visitante_controller = require('../Controllers/visitanteController');
-const { checkRole } = require("../utils/Auth");
+const { checkRole } = require('../Utils/Auth');
 
 router.route("/list").get(checkRole, visitante_controller.all_visitantes);
 
