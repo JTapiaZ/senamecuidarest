@@ -43,6 +43,11 @@ const aprendizSchema = new Schema(
             required: true,
             max: 30
         },
+        complejo: {
+            type: String,
+            required: true,
+            max: 30
+        },
         ficha: {
             type: String,
             required: true,
