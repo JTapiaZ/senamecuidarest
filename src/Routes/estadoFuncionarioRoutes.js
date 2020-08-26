@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const estadoFuncionario_controller = require('../Controllers/estadoFuncionarioController');
-const { userAuth, checkRole } = require('../utils/Auth');
+const { userAuth, checkRole } = require('../Utils/Auth');
 
 
 router.route("/list").get(checkRole, estadoFuncionario_controller.all_estados);
