@@ -51,6 +51,7 @@ app.use("/api/noIngresoDia", require('./Routes/noIngresoDiaRoutes'))
 app.use("/api/saludEstado", require('./Routes/EstadoSaludRoutes'))
 app.use("/api/reporteSaludDia", require('./Routes/reporteSaludDiaRoutes'))
 app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
+app.use("/api/ingresoSuspendido", require('./Routes/ingresoSuspendidoRoutes'))
 
 
 // Run the server

@@ -1,5 +1,6 @@
 const ReporteSaludDia = require('../Models/tbl_reporteSaludDia');
 const ReporteSalud = require('../Models/tbl_reporteSalud');
+const IngresoSuspendido = require('../Models/tbl_ingresoSuspendido');
 const Visitante = require('../Models/tbl_visitante')
 const {emailSend} = require('./mailSintomasController');
 const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
@@ -40,7 +41,7 @@ exports.reporteSaludDia_create = function (req, res) {
                 eps: newData.eps,
                 ficha: newData.ficha,
                 programaDeFormacion: newData.programaDeFormacion,
-                sintomas
+                sintomas,
 
             }
         )
@@ -57,7 +58,7 @@ exports.reporteSaludDia_create = function (req, res) {
                 eps: newData.eps,
                 ficha: newData.ficha,
                 programaDeFormacion: newData.programaDeFormacion,
-                sintomas
+                sintomas,
 
             }
         )
@@ -127,8 +128,7 @@ exports.reporteSaludDia_createNE = function (req, res) {
                     eps: newData.eps,
                     ficha: newData.ficha,
                     programaDeFormacion: newData.programaDeFormacion,
-                    sintomas
-    
+                    sintomas,
                 }
             )
         );
@@ -144,7 +144,24 @@ exports.reporteSaludDia_createNE = function (req, res) {
                     eps: newData.eps,
                     ficha: newData.ficha,
                     programaDeFormacion: newData.programaDeFormacion,
-                    sintomas
+                    sintomas,
+    
+                }
+            )
+        );
+        let ingresoSuspendido = new IngresoSuspendido(
+            (
+                {
+                    nombre: newData.nombre,
+                    email: newData.email,
+                    documentoIdentidad: newData.documentoIdentidad,
+                    celular: newData.celular,
+                    telefono: newData.telefono,
+                    direccionResidencia: newData.direccionResidencia,
+                    eps: newData.eps,
+                    ficha: newData.ficha,
+                    programaDeFormacion: newData.programaDeFormacion,
+                    sintomas,
     
                 }
             )
@@ -160,7 +177,18 @@ exports.reporteSaludDia_createNE = function (req, res) {
                 // res.send("¡Su registro se ha guardado exitosamente!");
                 reporteSalud.save()
                 .then(data => {
-                    res.send({data})
+                    console.log({data});
+                    ingresoSuspendido.save()
+                    .then(data => {
+                        res.send({data});
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                        message: 
+                            err.message || "Ocurrio un error al crear el registro",
+                        });
+                    console.log(err);
+                    })
                 })
                 .catch(err => {
                     res.status(500).send({

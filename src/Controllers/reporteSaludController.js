@@ -5,9 +5,9 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.reporteSalud_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
-        return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
-    }
+    // if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    //     return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
+    // }
 
     const {body} = req
     const valores = body.sintomas
@@ -71,9 +71,9 @@ exports.reporteSalud_create = function (req, res) {
 
 exports.reporteSalud_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
-        return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
-    }
+    // if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps) {
+    //     return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
+    // }
 
     const {body} = req
     const valores = body.sintomas
