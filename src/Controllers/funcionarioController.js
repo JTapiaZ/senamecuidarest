@@ -250,7 +250,7 @@ exports.funcionario_delete = (req, res) => {
 // --------- find a funcionario by documento Identidad -------------
 exports.funcionario_ing = async (req, res) => {
     const {documentoIdentidad} = req.body;
-    await Funcionario.findOne({documentoIdentidad}).select({_id: 0, horaEntrada: 0})
+    await Funcionario.findOne({documentoIdentidad}).select({_id: 0, horaEntrada: 0, __v: 0, createdAt: 0, updatedAt: 0})
         .then(data => {
             if (!data) {
                 return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);

@@ -3,10 +3,12 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const estadoVisitante_controller = require('../Controllers/estadoVisitanteController');
+const { userAuth, checkRole } = require("../utils/Auth");
 
-router.route("/list").get(estadoVisitante_controller.all_estados);
 
-router.route("/details/:id").get(estadoVisitante_controller.estado_details);
+router.route("/list").get(checkRole, estadoVisitante_controller.all_estados);
+
+router.route("/details/:id").get(checkRole, estadoVisitante_controller.estado_details);
 
 router.route("/create").post(estadoVisitante_controller.estado_create);
 

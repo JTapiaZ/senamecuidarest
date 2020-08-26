@@ -8,19 +8,20 @@ const reporteSaludSchema = new Schema(
         nombre: {
             type: String,
             required: true,
-            max: 30
+            max: 30,
+            
         },
         email: {
             type: String,
             required: true,
             max: 50,
-            unique: true
+            unique: false
         },
         documentoIdentidad: {
             type: String,
             required: true,
             max: 20,
-            unique: true
+            unique: false
         },
         celular: {
             type: String,
@@ -48,35 +49,35 @@ const reporteSaludSchema = new Schema(
                 type: Boolean,
                 required: true,
             },
-            Tos: {
+            tos: {
                 type: Boolean,
                 required: true,
             },
-            DolorTragar: {
+            dolorTragar: {
                 type: Boolean,
                 required: true,
             },
-            MalestarGeneral: {
+            malestarGeneral: {
                 type: Boolean,
                 required: true,
             },
-            DificultadRespirar: {
+            dificultadRespirar: {
                 type: Boolean,
                 required: true,
             },
-            Gripa: {
+            gripa: {
                 type: Boolean,
                 required: true,
             },
-            Diarrea: {
+            diarrea: {
                 type: Boolean,
                 required: true,
             },
-            ContactoSospechoso: {
+            contactoSospechoso: {
                 type: Boolean,
                 required: true,
             },
-            DolorArticular: {
+            dolorArticular: {
                 type: Boolean,
                 required: true,
             },

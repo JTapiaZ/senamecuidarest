@@ -1,7 +1,10 @@
 'use strict'
 require('mongoose-type-email');
 const {Schema, model} = require("mongoose");
+const { schema } = require('./tbl_reporteSalud');
+const ttl = require('mongoose-ttl');    
 require('mongoose-type-email');
+const moment = require('moment');
 
 const reporteSaludDiaSchema = new Schema(
     {
@@ -48,41 +51,50 @@ const reporteSaludDiaSchema = new Schema(
                 type: Boolean,
                 required: true,
             },
-            Tos: {
+            tos: {
                 type: Boolean,
                 required: true,
             },
-            DolorTragar: {
+            dolorTragar: {
                 type: Boolean,
                 required: true,
             },
-            MalestarGeneral: {
+            malestarGeneral: {
                 type: Boolean,
                 required: true,
             },
-            DificultadRespirar: {
+            dificultadRespirar: {
                 type: Boolean,
                 required: true,
             },
-            Gripa: {
+            gripa: {
                 type: Boolean,
                 required: true,
             },
-            Diarrea: {
+            diarrea: {
                 type: Boolean,
                 required: true,
             },
-            ContactoSospechoso: {
+            contactoSospechoso: {
                 type: Boolean,
                 required: true,
             },
-            DolorArticular: {
+            dolorArticular: {
                 type: Boolean,
                 required: true,
             },
+        },
+        expireAt: {
+            type: Date,
+            default: moment().add(24, 'hours'),
+            index: { expires: moment().add(24, 'hours') }
+        },
+        HORA: {
+            type: String,
+            default: moment().format('MMMM Do YYYY, h:mm:ss a'),
         }
     },
-    {timestamps: true}
+    {timestamps: true},
 )
 
 module.exports = model("ReporteSaludDia", reporteSaludDiaSchema);

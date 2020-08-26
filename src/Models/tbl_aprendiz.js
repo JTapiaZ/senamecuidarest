@@ -4,9 +4,6 @@ const {Schema, model} = require("mongoose");
 require('mongoose-type-email');
 const moment = require('moment-timezone')
 
-
-
-
 const aprendizSchema = new Schema(
     {
         nombre: {

@@ -3,10 +3,12 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const publico_controller = require('../Controllers/publicoController');
+const { userAuth, checkRole } = require("../utils/Auth");
 
-router.route("/list").get(publico_controller.all_publico);
 
-router.route("/details/:id").get(publico_controller.publico_details);
+router.route("/list").get(checkRole, publico_controller.all_publico);
+
+router.route("/details/:id").get(checkRole, publico_controller.publico_details);
 
 router.route("/create").post(publico_controller.publico_create);
 
