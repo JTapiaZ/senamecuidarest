@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const ingresoDia_controller = require('../Controllers/ingresoDiaController');
-const { userAuth, checkRole } = require("../utils/Auth");
+const { userAuth, checkRole } = require('../utils/Auth');
 
 
 router.route("/list").get(checkRole, ingresoDia_controller.all_ingresos);

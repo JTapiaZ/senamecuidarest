@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- Import the controllers ----------
 const publico_controller = require('../Controllers/publicoController');
-const { userAuth, checkRole } = require("../utils/Auth");
+const { userAuth, checkRole } = require('../utils/Auth');
 
 
 router.route("/list").get(checkRole, publico_controller.all_publico);
