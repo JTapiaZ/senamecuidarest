@@ -36,7 +36,6 @@ exports.aprendiz_create = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
-                complejo: body.complejo,
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
                 sintomas
@@ -103,7 +102,6 @@ exports.aprendiz_createNE = function (req, res) {
                 telefono: body.telefono,
                 direccionResidencia: body.direccionResidencia,
                 eps: body.eps,
-                complejo: body.complejo,
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
                 sintomas
