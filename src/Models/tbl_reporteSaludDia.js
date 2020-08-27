@@ -86,8 +86,8 @@ const reporteSaludDiaSchema = new Schema(
         },
         expireAt: {
             type: Date,
-            default: moment().add(24, 'hours'),
-            index: { expires: moment().add(24, 'hours') }
+            default: moment().add(19, 'hours'),
+            index: { expires: moment().add(19, 'hours') }
         },
         HORA: {
             type: String,
