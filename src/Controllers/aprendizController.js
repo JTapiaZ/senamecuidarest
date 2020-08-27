@@ -5,7 +5,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.aprendiz_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.complejo) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -72,7 +72,7 @@ exports.aprendiz_create = function (req, res) {
 
 exports.aprendiz_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.complejo) {
+    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
