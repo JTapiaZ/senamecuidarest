@@ -10,6 +10,11 @@ const publicoSchema = new Schema(
             required: true,
             max: 30
         },
+        sexo: {
+            type: String,
+            required: true,
+            max: 30
+        },
         email: {
             type: String,
             required: true,
@@ -48,6 +53,11 @@ const publicoSchema = new Schema(
             max: 30
         },
         piso: {
+            type: String,
+            required: true,
+            max: 30
+        },
+        transporte: {
             type: String,
             required: true,
             max: 30

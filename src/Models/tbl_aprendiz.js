@@ -11,6 +11,11 @@ const aprendizSchema = new Schema(
             required: true,
             max: 30
         },
+        sexo: {
+            type: String,
+            required: true,
+            max: 30
+        },
         email: {
             type: String,
             required: true,
@@ -49,6 +54,11 @@ const aprendizSchema = new Schema(
             max: 20
         },
         programaDeFormacion: {
+            type: String,
+            required: true,
+            max: 50
+        },
+        transporte: {
             type: String,
             required: true,
             max: 50

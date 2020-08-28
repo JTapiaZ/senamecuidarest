@@ -32,7 +32,29 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
-app.use(cors())
+
+// Habilitar cors (DE MANERA LIMITADA)
+// En esta ocasion sera abierta para mi
+const whitelist=['http://senamecuida.sertec-csge.com.co/'];
+const corsOptions={
+    origin: (origin,callback) => {
+        
+        const existe = whitelist.some(dominio => dominio=== origin);
+
+        if (existe) {
+            callback(null,true)
+        } else {
+            callback(new Error('No permitido por CORS'))
+        }
+    }
+}
+
+// Esta limita el acceso
+app.use(cors(corsOptions));
+
+// Esta es abierta para todo el mundo.
+// app.use(cors());
+
 
 
 //Routes

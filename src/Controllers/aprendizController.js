@@ -5,7 +5,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.aprendiz_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -30,6 +30,7 @@ exports.aprendiz_create = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -38,6 +39,7 @@ exports.aprendiz_create = function (req, res) {
                 eps: body.eps,
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
+                transporte: body.transporte,
                 sintomas
 
             }
@@ -71,7 +73,7 @@ exports.aprendiz_create = function (req, res) {
 
 exports.aprendiz_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -96,6 +98,7 @@ exports.aprendiz_createNE = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -104,6 +107,7 @@ exports.aprendiz_createNE = function (req, res) {
                 eps: body.eps,
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
+                transporte: body.transporte,
                 sintomas
 
             }

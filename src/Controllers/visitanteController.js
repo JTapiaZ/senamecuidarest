@@ -5,7 +5,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.visitante_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso || !req.body.transporte) {
         return res.status(400).send("¡Porfavor rellene todos los campos solicitados!");
     }
 
@@ -30,6 +30,7 @@ exports.visitante_create = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -38,6 +39,7 @@ exports.visitante_create = function (req, res) {
                 eps: body.eps,
                 torre: body.torre,
                 piso: body.piso,
+                transporte: body.transporte,
                 sintomas
 
             }
@@ -71,7 +73,7 @@ exports.visitante_create = function (req, res) {
 
 exports.visitante_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso || !req.body.transporte) {
         return res.status(400).send("¡Porfavor rellene todos los campos solicitados!");
     }
 
@@ -96,6 +98,7 @@ exports.visitante_createNE = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -104,8 +107,8 @@ exports.visitante_createNE = function (req, res) {
                 eps: body.eps,
                 torre: body.torre,
                 piso: body.piso,
+                transporte: body.transporte,
                 sintomas
-
             }
         )
     );

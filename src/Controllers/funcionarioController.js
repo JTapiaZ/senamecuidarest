@@ -4,7 +4,7 @@ const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 
 exports.funcionario_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.cargo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -30,6 +30,8 @@ exports.funcionario_create = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
+                cargo: body.cargo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -38,6 +40,7 @@ exports.funcionario_create = function (req, res) {
                 eps: body.eps,
                 torre: body.torre,
                 piso: body.piso,
+                transporte: body.transporte,
                 sintomas
 
             }
@@ -71,7 +74,7 @@ exports.funcionario_create = function (req, res) {
 }
 exports.funcionario_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.torre || !req.body.piso ) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.cargo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -97,6 +100,8 @@ exports.funcionario_createNE = function (req, res) {
         (
             {
                 nombre: body.nombre,
+                sexo: body.sexo,
+                cargo: body.cargo,
                 email: body.email,
                 documentoIdentidad: body.documentoIdentidad,
                 celular: body.celular,
@@ -105,6 +110,7 @@ exports.funcionario_createNE = function (req, res) {
                 eps: body.eps,
                 torre: body.torre,
                 piso: body.piso,
+                transporte: body.transporte,
                 sintomas
 
             }
