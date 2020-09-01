@@ -8,7 +8,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan')
 var cors = require('cors')
 
-mongoose.set('useCreateIndex',true);
+
+mongoose.set('useCreateIndex', true);
+
 // Database Connection
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true})
     .then(() => {
@@ -25,6 +27,7 @@ app.use('/static', express.static(__dirname + '/reportes'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'))
+app.set('trust proxy', true);
 
 // Cors
 app.use(function (req, res, next) {
@@ -32,6 +35,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
+
 
 // Habilitar cors (DE MANERA LIMITADA)
 // En esta ocasion sera abierta para mi
@@ -57,6 +61,7 @@ app.use(cors(corsOptions));
 
 
 
+
 //Routes
 app.use("/api/visitante", require('./Routes/visitanteRoutes'));
 app.use("/api/funcionario", require('./Routes/funcionarioRoutes'));
@@ -73,7 +78,8 @@ app.use("/api/noIngresoDia", require('./Routes/noIngresoDiaRoutes'))
 app.use("/api/saludEstado", require('./Routes/EstadoSaludRoutes'))
 app.use("/api/reporteSaludDia", require('./Routes/reporteSaludDiaRoutes'))
 app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
-app.use("/api/ingresoSuspendido", require('./Routes/ingresoSuspendidoRoutes'))
+app.use("/api/reporteInsumo", require('./Routes/repInsumoRoutes'))
+app.use("/api/reporteLimpieza", require('./Routes/repLimpiezaRoutes'))
 
 
 // Run the server

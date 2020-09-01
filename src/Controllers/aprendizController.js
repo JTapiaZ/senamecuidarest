@@ -1,11 +1,12 @@
 const Aprendiz = require('../Models/tbl_aprendiz');
 const {emailSend} = require('./mailController');
 const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
-
+var ip = require('ip');
+var geoip = require('geoip-lite');
 
 exports.aprendiz_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte || !req.body.jornada ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -40,6 +41,7 @@ exports.aprendiz_create = function (req, res) {
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
                 transporte: body.transporte,
+                jornada: body.jornada,
                 sintomas
 
             }
@@ -49,8 +51,7 @@ exports.aprendiz_create = function (req, res) {
 
 // ------------- save public in the database -----------
 
-    aprendiz
-        .save()
+    aprendiz.save()
         .then(data => {
             res.send("¡Su registro se ha guardado exitosamente!");
         })
@@ -69,11 +70,13 @@ exports.aprendiz_create = function (req, res) {
                 return res.status(409).send(err.keyValue);
             }
         })
+
+
 }
 
 exports.aprendiz_createNE = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte ) {
+    if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte || !req.body.jornada ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
@@ -108,6 +111,7 @@ exports.aprendiz_createNE = function (req, res) {
                 ficha: body.ficha,
                 programaDeFormacion: body.programaDeFormacion,
                 transporte: body.transporte,
+                jornada: body.jornada,
                 sintomas
 
             }
@@ -142,6 +146,15 @@ exports.aprendiz_createNE = function (req, res) {
 
 // ------------- retrieve and return all public ------------------
 exports.all_aprendices = (req, res) => {
+
+    const ClienteIP = ip.address()
+
+    const Cosasusuario = geoip.lookup(ClienteIP);
+
+    let geo = geoip.lookup(ClienteIP);
+    console.log(`su ip es ${ClienteIP}`)
+    console.log(geo)
+
     Aprendiz.find()
         .then(data => {
             var message = "";

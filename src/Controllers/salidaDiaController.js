@@ -3,14 +3,15 @@ const SalidaDia = require('../Models/tbl_salidaDia');
 
 exports.salidaDia_create = function (req, res) {
     // ------------------ Validate Request ----------------- //
-    if (!req.body.nombre || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps ){
+    if (!req.body.datar.nombre || !req.body.datar.email || !req.body.datar.documentoIdentidad || !req.body.datar.telefono || !req.body.datar.direccionResidencia || !req.body.datar.eps  ){
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
 
+    
 
 // Create a ingreso
 let salidaDia = new SalidaDia(
-    ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps} = req.body)
+    ({ nombre, email, documentoIdentidad, celular,telefono, direccionResidencia, eps, temperatura} = req.body.datar)
 );
 
 

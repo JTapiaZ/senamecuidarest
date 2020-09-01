@@ -163,3 +163,25 @@ exports.countDocuments = (req, res) => {
     }
   })
 }
+
+exports.ing = async (req, res) => {
+  const {documentoIdentidad} = req.body;
+  await Estado.findOne({documentoIdentidad}).select({
+      _id: 0,
+      horaEntrada: 0,
+      createdAt: 0,
+      updatedAt: 0,
+      ficha: 0,
+      programaDeFormacion: 0,
+      __v: 0
+  })
+      .then(data => {
+          if (!data) {
+              return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
+          }
+          res.send(data)
+      })
+      .catch(err => {
+          return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+      });
+};

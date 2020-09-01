@@ -20,5 +20,7 @@ router.route("/delete").post(estadoVisitante_controller.estado_delete);
 // ------ Count registros ---------
 router.route('/countDocuments').get(estadoVisitante_controller.countDocuments)
 
+// ------ ING ---------
+router.route('/ing').post(estadoVisitante_controller.ing)
 
 module.exports = router;

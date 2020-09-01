@@ -63,6 +63,11 @@ const aprendizSchema = new Schema(
             required: true,
             max: 50
         },
+        jornada: {
+            type: String,
+            required: true,
+            max: 50
+        },
         sintomas: {
 
             fiebre: {

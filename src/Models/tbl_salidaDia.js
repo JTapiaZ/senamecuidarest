@@ -41,7 +41,11 @@ const salidaDiaSchema  = new Schema(
             required: true,
             max: 30
         },
-        horaEntrada: {
+        temperatura: {
+            type: Number,
+            max: 50
+        },
+        horaSalida: {
             type: Date,
             default: Date.now
         },

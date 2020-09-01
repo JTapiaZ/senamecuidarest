@@ -6,7 +6,8 @@ const aprendiz_controller = require('../Controllers/aprendizController');
 const { userAuth, checkRole } = require('../Utils/Auth');
 
 
-router.route("/list").get(checkRole, aprendiz_controller.all_aprendices);
+//router.route("/list").get(checkRole, aprendiz_controller.all_aprendices);
+router.route("/list").get(aprendiz_controller.all_aprendices);
 
 router.route("/details/:id").get(checkRole,aprendiz_controller.aprendiz_details);
 
@@ -27,7 +28,7 @@ router.route("/delete/:id").delete(checkRole, aprendiz_controller.aprendiz_delet
 router.route('/countDocuments').get(aprendiz_controller.countDocuments)
 
 
-// ------ 
+// ------
 router.route('/countMeses').get(aprendiz_controller.ingresoMeses)
 
 module.exports = router;
