@@ -54,10 +54,10 @@ const corsOptions={
 }
 
 // Esta limita el acceso
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Esta es abierta para todo el mundo.
-app.use(cors());
+// app.use(cors());
 
 
 
