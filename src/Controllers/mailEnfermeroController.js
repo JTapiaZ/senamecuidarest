@@ -12,7 +12,7 @@ exports.emailEnfermeroSend = (data) => {
     let email = 
     {
         from: "senamecuida@gmail.com",
-        to: "jjagudelo@sena.edu.co",
+        to: "enfermerosenamecuida@gmail.com",
         subject: "¡Novedad Ingreso!",
         html: `                                         
             <!DOCTYPE html>

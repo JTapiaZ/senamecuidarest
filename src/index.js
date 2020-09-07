@@ -54,10 +54,10 @@ const corsOptions={
 }
 
 // Esta limita el acceso
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Esta es abierta para todo el mundo.
-// app.use(cors());
+app.use(cors());
 
 
 
@@ -80,6 +80,7 @@ app.use("/api/reporteSaludDia", require('./Routes/reporteSaludDiaRoutes'))
 app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
 app.use("/api/reporteInsumo", require('./Routes/repInsumoRoutes'))
 app.use("/api/reporteLimpieza", require('./Routes/repLimpiezaRoutes'))
+app.use("/api/ingresoSuspendido", require('./Routes/ingresoSuspendidoRoutes'))
 
 
 // Run the server
