@@ -81,6 +81,7 @@ app.use("/api/reporteSalud", require('./Routes/reporteSaludRoutes'))
 app.use("/api/reporteInsumo", require('./Routes/repInsumoRoutes'))
 app.use("/api/reporteLimpieza", require('./Routes/repLimpiezaRoutes'))
 app.use("/api/ingresoSuspendido", require('./Routes/ingresoSuspendidoRoutes'))
+app.use("/api/soporte", require('./Routes/soporteRoute'))
 
 
 // Run the server
