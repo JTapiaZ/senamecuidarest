@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
 
 // Habilitar cors (DE MANERA LIMITADA)
 // En esta ocasion sera abierta para mi
-const whitelist=['https://senamecuida.sertec-csge.com.co'];
+const whitelist=['http://senamecuida.sertec-csge.com.co'];
 const corsOptions={
     origin: (origin,callback) => {
         
