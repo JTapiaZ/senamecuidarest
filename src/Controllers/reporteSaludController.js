@@ -66,6 +66,7 @@ exports.reporteSalud_create = function (req, res) {
                 console.log(err);
                 return res.status(409).send(err.keyValue);
             }
+            console.log(err)
         })
 }
 

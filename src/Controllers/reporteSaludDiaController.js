@@ -33,6 +33,8 @@ exports.reporteSaludDia_create = function (req, res) {
         (
             {
                 nombre: newData.nombre,
+                sexo: newData.sexo,
+                cargo: newData.cargo,
                 email: newData.email,
                 documentoIdentidad: newData.documentoIdentidad,
                 celular: newData.celular,
@@ -41,6 +43,8 @@ exports.reporteSaludDia_create = function (req, res) {
                 eps: newData.eps,
                 ficha: newData.ficha,
                 programaDeFormacion: newData.programaDeFormacion,
+                transporte: newData.transporte,
+                jornada: newData.jornada,
                 sintomas,
 
             }
@@ -50,6 +54,8 @@ exports.reporteSaludDia_create = function (req, res) {
         (
             {
                 nombre: newData.nombre,
+                sexo: newData.sexo,
+                cargo: newData.cargo,
                 email: newData.email,
                 documentoIdentidad: newData.documentoIdentidad,
                 celular: newData.celular,
@@ -58,6 +64,8 @@ exports.reporteSaludDia_create = function (req, res) {
                 eps: newData.eps,
                 ficha: newData.ficha,
                 programaDeFormacion: newData.programaDeFormacion,
+                transporte: newData.transporte,
+                jornada: newData.jornada,
                 sintomas,
 
             }
@@ -90,6 +98,7 @@ exports.reporteSaludDia_create = function (req, res) {
                 console.log(err);
                 return res.status(409).send(err.keyValue);
             }
+            console.log(err+ 'Dia')
         })
 }
 
@@ -116,43 +125,54 @@ exports.reporteSaludDia_createNE = function (req, res) {
         }
         
     // Create a public
-        let reporteSaludDia = new ReporteSaludDia(
-            (
-                {
-                    nombre: newData.nombre,
-                    email: newData.email,
-                    documentoIdentidad: newData.documentoIdentidad,
-                    celular: newData.celular,
-                    telefono: newData.telefono,
-                    direccionResidencia: newData.direccionResidencia,
-                    eps: newData.eps,
-                    ficha: newData.ficha,
-                    programaDeFormacion: newData.programaDeFormacion,
-                    sintomas,
-                }
-            )
-        );
-        let reporteSalud = new ReporteSalud(
-            (
-                {
-                    nombre: newData.nombre,
-                    email: newData.email,
-                    documentoIdentidad: newData.documentoIdentidad,
-                    celular: newData.celular,
-                    telefono: newData.telefono,
-                    direccionResidencia: newData.direccionResidencia,
-                    eps: newData.eps,
-                    ficha: newData.ficha,
-                    programaDeFormacion: newData.programaDeFormacion,
-                    sintomas,
-    
-                }
-            )
-        );
+    let reporteSaludDia = new ReporteSaludDia(
+        (
+            {
+                nombre: newData.nombre,
+                sexo: newData.sexo,
+                cargo: newData.cargo,
+                email: newData.email,
+                documentoIdentidad: newData.documentoIdentidad,
+                celular: newData.celular,
+                telefono: newData.telefono,
+                direccionResidencia: newData.direccionResidencia,
+                eps: newData.eps,
+                ficha: newData.ficha,
+                programaDeFormacion: newData.programaDeFormacion,
+                transporte: newData.transporte,
+                jornada: newData.jornada,
+                sintomas,
+
+            }
+        )
+    );
+    let reporteSalud = new ReporteSalud(
+        (
+            {
+                nombre: newData.nombre,
+                sexo: newData.sexo,
+                cargo: newData.cargo,
+                email: newData.email,
+                documentoIdentidad: newData.documentoIdentidad,
+                celular: newData.celular,
+                telefono: newData.telefono,
+                direccionResidencia: newData.direccionResidencia,
+                eps: newData.eps,
+                ficha: newData.ficha,
+                programaDeFormacion: newData.programaDeFormacion,
+                transporte: newData.transporte,
+                jornada: newData.jornada,
+                sintomas,
+
+            }
+        )
+    );
         let ingresoSuspendido = new IngresoSuspendido(
             (
                 {
                     nombre: newData.nombre,
+                    sexo: newData.sexo,
+                    cargo: newData.cargo,
                     email: newData.email,
                     documentoIdentidad: newData.documentoIdentidad,
                     celular: newData.celular,
@@ -161,6 +181,8 @@ exports.reporteSaludDia_createNE = function (req, res) {
                     eps: newData.eps,
                     ficha: newData.ficha,
                     programaDeFormacion: newData.programaDeFormacion,
+                    transporte: newData.transporte,
+                    jornada: newData.jornada,
                     sintomas,
     
                 }

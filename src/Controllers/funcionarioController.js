@@ -313,3 +313,120 @@ exports.ingresoMeses = (req, res) => {
         }
     })
 }
+
+exports.funcionariosMasculino = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Masculino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.funcionariosFemenino = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Femenino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.funcionariosTransPublico = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Transporte Público"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+  exports.funcionariosTransParticular = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Carro particular"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.funcionariosBicicleta = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Bicicleta"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.funcionariosCaminando = (req, res) => {
+    Funcionario.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Caminando"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+  
+// --------- find a funcionario by documento Identidad -------------
+exports.funcionario_ingPrueba = async (req, res) => {
+    const {documentoIdentidad} = req.body;
+    await Funcionario.findOne({documentoIdentidad})
+        .then(data => {
+            if (!data) {
+                return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
+            }
+            // res.send(`Bienvenido ${data.nombre} con EPS ${data.eps}`);
+            res.send(data)      
+        })
+        .catch(err => {
+            return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+        });
+};

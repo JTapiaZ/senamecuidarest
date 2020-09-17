@@ -185,3 +185,103 @@ exports.ing = async (req, res) => {
           return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
       });
 };
+
+exports.estadoVMasculino = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'sexo':"Masculino"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoVFemenino = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'sexo':"Femenino"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoVTransPublico = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Transporte Público"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+exports.estadoVTransParticular = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Carro particular"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoVBicicleta = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Bicicleta"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoVCaminando = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Caminando"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};

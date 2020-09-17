@@ -1,5 +1,4 @@
 const Aprendiz = require('../Models/tbl_aprendiz');
-const Visitante = require('../Models/tbl_visitante');
 const {emailSend} = require('./mailController');
 const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 var ip = require('ip');
@@ -76,7 +75,6 @@ exports.aprendiz_create = function (req, res) {
 }
 
 exports.aprendiz_createNE = function (req, res) {
-    // ------------------ Validate Request ----------------- //
     if (!req.body.nombre || !req.body.sexo || !req.body.email || !req.body.documentoIdentidad || !req.body.telefono || !req.body.direccionResidencia || !req.body.eps || !req.body.transporte || !req.body.jornada ) {
         return res.status(400).send("¡Por favor rellene todos los campos solicitados!");
     }
@@ -332,3 +330,102 @@ exports.ingresoMeses = (req, res) => {
 }
 
 
+exports.aprendicesMasculino = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Masculino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.aprendicesFemenino = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Femenino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.aprendicesTransPublico = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Transporte Público"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+  exports.aprendicesTransParticular = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Carro particular"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.aprendicesBicicleta = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Bicicleta"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.aprendicesCaminando = (req, res) => {
+    Aprendiz.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Caminando"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };

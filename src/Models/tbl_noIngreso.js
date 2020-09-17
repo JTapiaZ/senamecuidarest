@@ -11,6 +11,16 @@ const noIngresoDiaSchema  = new Schema(
             required: true,
             max: 30
         },
+        sexo: {
+            type: String,
+            required: true,
+            max: 30
+        },
+        cargo: {
+            type: String,
+            required: false,
+            max: 30
+        },
         email: {
             type: String,
             required: true,
@@ -40,6 +50,16 @@ const noIngresoDiaSchema  = new Schema(
             type: String,
             required: true,
             max: 30
+        },
+        transporte: {
+            type: String,
+            required: true,
+            max: 50
+        },
+        jornada: {
+            type: String,
+            required: false,
+            max: 50
         },
         horaEntrada: {
             type: Date,

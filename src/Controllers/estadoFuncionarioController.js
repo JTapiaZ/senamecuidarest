@@ -185,3 +185,151 @@ exports.ing = async (req, res) => {
           return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
       });
 };
+
+exports.estadoFMasculino = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'sexo':"Masculino"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoFFemenino = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'sexo':"Femenino"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoFTransPublico = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Transporte Público"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+exports.estadoFTransParticular = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Carro particular"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoFBicicleta = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Bicicleta"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+
+exports.estadoFCaminando = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'transporte':"Caminando"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+exports.estadoFRolI = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'cargo':"Instructor"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+exports.estadoFRolA = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'cargo':"Administrativo"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};
+
+exports.estadoFRolPA = (req, res) => {
+  Estado.countDocuments(
+    { $or: 
+      [
+          {'cargo':"Personal de Apoyo"},
+      ] 
+  }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({result});
+      }
+    }
+  );
+};

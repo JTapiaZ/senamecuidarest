@@ -13,6 +13,7 @@ exports.emailEnfermeroSendNE = (data) => {
     {
         from: "senamecuida@gmail.com",
         to: "enfermerosenamecuida@gmail.com",
+        cc: "emachadog@sena.edu.co, namartinez@sena.edu.co",
         subject: "¡Novedad Registro!",
         html: `                                                                 
             <!DOCTYPE html>

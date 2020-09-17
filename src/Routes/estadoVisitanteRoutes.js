@@ -23,4 +23,14 @@ router.route('/countDocuments').get(estadoVisitante_controller.countDocuments)
 // ------ ING ---------
 router.route('/ing').post(estadoVisitante_controller.ing)
 
+// ------ Estado V * genero -------- 
+router.route('/countMasc').get(estadoVisitante_controller.estadoVMasculino);
+router.route('/countFem').get(estadoVisitante_controller.estadoVFemenino);
+
+// ------ Estado V Transporte -------
+router.route('/countTransPb').get(estadoVisitante_controller.estadoVTransPublico);
+router.route('/countTransParticular').get(estadoVisitante_controller.estadoVTransParticular);
+router.route('/countBicicleta').get(estadoVisitante_controller.estadoVBicicleta);
+router.route('/countCaminando').get(estadoVisitante_controller.estadoVCaminando);
+
 module.exports = router;

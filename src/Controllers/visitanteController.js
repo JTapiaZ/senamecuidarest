@@ -310,3 +310,118 @@ exports.ingresoMeses = (req, res) => {
 }
 
 
+exports.visitantesMasculino = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Masculino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.visitantesFemenino = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'sexo':"Femenino"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.visitantesTransPublico = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Transporte Público"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+  exports.visitantesTransParticular = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Carro particular"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.visitantesBicicleta = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Bicicleta"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+
+  exports.visitantesCaminando = (req, res) => {
+    Visitante.countDocuments(
+      { $or: 
+        [
+            {'transporte':"Caminando"},
+        ] 
+    }, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({result});
+        }
+      }
+    );
+  };
+
+// --------- find a funcionario by documento Identidad -------------
+exports.visitante_ingPrueba = async (req, res) => {
+    const {documentoIdentidad} = req.body;
+    await Funcionario.findOne({documentoIdentidad})
+        .then(data => {
+            if (!data) {
+                return res.status(404).send(`Persona no encontrada con el documento de identidad ${documentoIdentidad}`);
+            }
+            // res.send(`Bienvenido ${data.nombre} con EPS ${data.eps}`);
+            res.send(data)      
+        })
+        .catch(err => {
+            return res.status(500).send(`Error al traer la persona con el documento ${documentoIdentidad}`);
+        });
+};
