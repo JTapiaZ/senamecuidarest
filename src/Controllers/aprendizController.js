@@ -1,4 +1,5 @@
 const Aprendiz = require('../Models/tbl_aprendiz');
+const Visitante = require('../Models/tbl_visitante');
 const {emailSend} = require('./mailController');
 const {emailEnfermeroSendNE} = require('./mailRegistroNEController');
 var ip = require('ip');
